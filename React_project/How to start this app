@@ -1,0 +1,5 @@
+1. On terminal, change the directory to /React_project
+2. run the command - npm install
+3. This will install all the required modules inside /React_project/node_modules folder.
+4. on terminal, run the command - npm start
+5. This will run the application
