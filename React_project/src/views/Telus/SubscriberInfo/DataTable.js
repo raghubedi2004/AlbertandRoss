@@ -10,7 +10,7 @@ class DataTable extends Component {
 	componentWillMount(){
 		axios({
 			method:'get',
-			url:'/getSubscribers',
+			url:'/subscribers',
 			baseURL: config.get('baseURL')
 		})
 		.then(res => {
