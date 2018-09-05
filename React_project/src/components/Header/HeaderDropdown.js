@@ -228,7 +228,7 @@ class HeaderDropdown extends Component {
   }
 
   render() {
-    const {notif, accnt, tasks, mssgs, ...attributes} = this.props;
+    const {notif, accnt, tasks, mssgs, attributes} = this.props;
     return (
       notif ? this.dropNotif() :
       accnt ? this.dropAccnt() :
