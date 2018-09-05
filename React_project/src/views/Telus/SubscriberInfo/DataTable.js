@@ -45,7 +45,7 @@ class DataTable extends Component {
             <i className="icon-menu"></i>Subscriber Information
           </CardHeader>
           <CardBody>
-            <BootstrapTable data={this.state.responseData} version="4" striped hover pagination search options={this.options}>
+            <BootstrapTable data={this.state.responseData} version="4" striped hover pagination search options={this.options} insertRow deleteRow >
               <TableHeaderColumn isKey dataField="subscriber" width='150px' dataSort>Subscriber</TableHeaderColumn>
 				<TableHeaderColumn dataField="billingaccountno" width='150px' dataSort>Billing Acc no.</TableHeaderColumn>
 				<TableHeaderColumn dataField="intervalstartdate" width='180px' dataSort>Interval Start date</TableHeaderColumn>
