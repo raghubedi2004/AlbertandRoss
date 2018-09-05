@@ -45,20 +45,33 @@ class DataTable extends Component {
             <i className="icon-menu"></i>Subscriber Information
           </CardHeader>
           <CardBody>
-            <BootstrapTable data={this.state.responseData} version="4" striped hover pagination search options={this.options} insertRow deleteRow >
-              <TableHeaderColumn isKey dataField="subscriber" width='150px' dataSort>Subscriber</TableHeaderColumn>
-				<TableHeaderColumn dataField="billingaccountno" width='150px' dataSort>Billing Acc no.</TableHeaderColumn>
-				<TableHeaderColumn dataField="intervalstartdate" width='180px' dataSort>Interval Start date</TableHeaderColumn>
-				<TableHeaderColumn dataField="intervalenddate" width='180px' dataSort>Interval End date</TableHeaderColumn>
+            <BootstrapTable data={this.state.responseData} version="4" striped hover pagination search options={this.options} insertRow deleteRow>
+				<TableHeaderColumn isKey dataField="initialdate" width='150px' dataSort>Initial Date</TableHeaderColumn>
+				<TableHeaderColumn dataField="datazipfile" width='150px' dataSort>Data Zip File</TableHeaderColumn>
+				<TableHeaderColumn dataField="billingaccountno" width='150px' dataSort>Billing Account No</TableHeaderColumn>
+				<TableHeaderColumn dataField="subscriber" width='150px' dataSort>Subscriber</TableHeaderColumn>
 				<TableHeaderColumn dataField="externalid" width='150px' dataSort>External Id</TableHeaderColumn>
-				<TableHeaderColumn dataField="imei" width='150px' dataSort>IMEI</TableHeaderColumn>
 				<TableHeaderColumn dataField="billcycle" width='150px' dataSort>Bill Cycle</TableHeaderColumn>
-				<TableHeaderColumn dataField="billcycledaysremaining" width='150px' dataSort>billcycledaysremaining</TableHeaderColumn>
-				<TableHeaderColumn dataField="domesticindividualbucket" width='150px' dataSort>Domestic individual bucket</TableHeaderColumn>
-				<TableHeaderColumn dataField="domesticindividualusage" width='150px' dataSort>Domestic individual usage</TableHeaderColumn>
-				<TableHeaderColumn dataField="totalmtddomesticdatausage" width='150px' dataSort>Total mtd domestic data usage</TableHeaderColumn>
-				<TableHeaderColumn dataField="totalincludeddomesticdata" width='150px' dataSort>Total include domestic data</TableHeaderColumn>
-				<TableHeaderColumn dataField="datazipfile" width='400px' dataSort>Data file</TableHeaderColumn>
+				<TableHeaderColumn dataField="billmonthnum" width='150px' dataSort>Bill Month Num</TableHeaderColumn>
+				<TableHeaderColumn dataField="billyearnum" width='150px' dataSort>Bill Year Num</TableHeaderColumn>
+				<TableHeaderColumn dataField="intervalstartdate" width='150px' dataSort>Interval Start Date</TableHeaderColumn>
+				<TableHeaderColumn dataField="intervalenddate" width='150px' dataSort>Interval End Date</TableHeaderColumn>
+				<TableHeaderColumn dataField="imei" width='150px' dataSort>IMEI</TableHeaderColumn>
+				<TableHeaderColumn dataField="billcycledaysremaining" width='150px' dataSort>Bill Cycle Days Remaining</TableHeaderColumn>
+				<TableHeaderColumn dataField="mtdusagedomesticindividual" width='150px' dataSort>MTD Usage Domestic Individual</TableHeaderColumn>
+				<TableHeaderColumn dataField="domesticindividualbucket" width='150px' dataSort>Domestic Individual Bucket</TableHeaderColumn>
+				<TableHeaderColumn dataField="domesticindividualusage" width='150px' dataSort>Domestic Individual Usage</TableHeaderColumn>
+				<TableHeaderColumn dataField="mtdusagedomesticsharedsinglesub" width='150px' dataSort>MTD Usage Domestic Shared Single Sub</TableHeaderColumn>
+				<TableHeaderColumn dataField="mtdusageroamingindividual" width='150px' dataSort>MTD Usage Roaming Individual</TableHeaderColumn>
+				<TableHeaderColumn dataField="roamingindividualbucket" width='150px' dataSort>Roaming Individual Bucket</TableHeaderColumn>
+				<TableHeaderColumn dataField="roamingindividualusage" width='150px' dataSort>Roaming Individual Usage</TableHeaderColumn>
+				<TableHeaderColumn dataField="mtdusageroamingsharedindividualsub" width='150px' dataSort>MTD Usage Roaming Shared Individual Sub</TableHeaderColumn>
+				<TableHeaderColumn dataField="overageusagedomestic" width='150px' dataSort>Overage Usage Domestic</TableHeaderColumn>
+				<TableHeaderColumn dataField="overageusageroaming" width='150px' dataSort>Overage Usage Roaming</TableHeaderColumn>
+				<TableHeaderColumn dataField="totalmtddomesticdatausage" width='150px' dataSort>Total MTD Domestic Data Usage</TableHeaderColumn>
+				<TableHeaderColumn dataField="totalincludeddomesticdata" width='150px' dataSort>Total Included Domestic Data</TableHeaderColumn>
+				<TableHeaderColumn dataField="domesticoveragechargedamount" width='150px' dataSort>Domestic Overage Charged Amount</TableHeaderColumn>
+				<TableHeaderColumn dataField="roamingoveragechargedamount" width='150px' dataSort>Roaming Overage Charged Amount</TableHeaderColumn>
             </BootstrapTable>
           </CardBody>
         </Card>
