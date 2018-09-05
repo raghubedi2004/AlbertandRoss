@@ -3,12 +3,12 @@ package com.telus.react.models;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "subscriberInfo")
+@Document(collection = "Subscribers")
 public class SubscriberInfo {
 
 	@Id
 	private String id;
-	private String initialDate;
+	private String initialdate;
 	private String datazipfile;
 	private String billingaccountno;
 	private String subscriber;
@@ -35,14 +35,66 @@ public class SubscriberInfo {
 	private String domesticoveragechargedamount;
 	private String roamingoveragechargedamount;
 	
+	
 	public SubscriberInfo() {
 		
     }
 	
-	public SubscriberInfo(String initialDate, String dataZipFile, String billingAccountNo) {
-        this.initialDate = initialDate;
-        this.datazipfile = dataZipFile;
-        this.billingaccountno = billingAccountNo;
+	public SubscriberInfo(String id,
+			String initialdate,
+			String datazipfile,
+			String billingaccountno,
+			String subscriber,
+			String externalid,
+			String billcycle,
+			String billmonthnum,
+			String billyearnum,
+			String intervalstartdate,
+			String intervalenddate,
+			String imei,
+			String billcycledaysremaining,
+			String mtdusagedomesticindividual,
+			String domesticindividualbucket,
+			String domesticindividualusage,
+			String mtdusagedomesticsharedsinglesub,
+			String mtdusageroamingindividual,
+			String roamingindividualbucket,
+			String roamingindividualusage,
+			String mtdusageroamingsharedindividualsub,
+			String overageusagedomestic,
+			String overageusageroaming,
+			String totalmtddomesticdatausage,
+			String totalincludeddomesticdata,
+			String domesticoveragechargedamount,
+			String roamingoveragechargedamount) {
+		
+		this.initialdate = initialdate;
+		this.datazipfile =  datazipfile;
+		this.billingaccountno =  billingaccountno;
+		this.subscriber = subscriber;
+		this.externalid = externalid;
+		this.billcycle = billcycle;
+		this.billmonthnum = billmonthnum;
+		this.billyearnum = billyearnum;
+		this.intervalstartdate = intervalstartdate;
+		this.intervalenddate = intervalenddate;
+		this.imei = imei;
+		this.billcycledaysremaining = billcycledaysremaining;
+		this.mtdusagedomesticindividual = mtdusagedomesticindividual;
+		this.domesticindividualbucket = domesticindividualbucket;
+		this.domesticindividualusage = domesticindividualusage;
+		this.mtdusagedomesticsharedsinglesub = mtdusagedomesticsharedsinglesub;
+		this.mtdusageroamingindividual = mtdusageroamingindividual;
+		this.roamingindividualbucket = roamingindividualbucket;
+		this.roamingindividualusage = roamingindividualusage;
+		this.mtdusageroamingsharedindividualsub = mtdusageroamingsharedindividualsub;
+		this.overageusagedomestic = overageusagedomestic;
+		this.overageusageroaming = overageusageroaming;
+		this.totalmtddomesticdatausage = totalmtddomesticdatausage;
+		this.totalincludeddomesticdata = totalincludeddomesticdata;
+		this.domesticoveragechargedamount = domesticoveragechargedamount;
+		this.roamingoveragechargedamount = roamingoveragechargedamount;
+		
     }
 
 	public String getId() {
@@ -53,12 +105,12 @@ public class SubscriberInfo {
 		this.id = id;
 	}
 
-	public String getInitialDate() {
-		return initialDate;
+	public String getInitialdate() {
+		return initialdate;
 	}
 
-	public void setInitialDate(String initialDate) {
-		this.initialDate = initialDate;
+	public void setInitialdate(String initialdate) {
+		this.initialdate = initialdate;
 	}
 
 	public String getDatazipfile() {
@@ -260,7 +312,5 @@ public class SubscriberInfo {
 	public void setRoamingoveragechargedamount(String roamingoveragechargedamount) {
 		this.roamingoveragechargedamount = roamingoveragechargedamount;
 	}
-	
-	
 	
 }
