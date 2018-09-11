@@ -6,7 +6,7 @@ import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
 import config from 'react-global-configuration';
 
 class DataTable extends Component {
-
+	
 	componentWillMount(){
 		axios({
 			method:'get',
@@ -17,9 +17,15 @@ class DataTable extends Component {
         const response = res.data;
 		this.setState({responseData:response});
 		//console.log(response);
+		
+		var subscriberInfo = document.getElementById("subscriberInfo");
+		subscriberInfo.style.display = "block";
+		var subscriberUsage = document.getElementById("subscriberUsage");
+		subscriberUsage.style.display = "none";
+		
       })
 	}
-
+	
 	constructor(props) {
 		super(props);
 		this.state = {responseData:''};
@@ -34,45 +40,68 @@ class DataTable extends Component {
 			withFirstAndLast: true,
 			pageSize: 5,
 		}
+		this.selectRow = {
+			mode: "checkbox",
+			clickToSelect: true,
+			bgColor: "rgb(238, 193, 213)",
+			onSelect: (row, isSelect, rowIndex, e) => {
+				alert(row.subscriber);
+			}
+		}
+		this.show_subscriberInfo= this.show_subscriberInfo.bind(this);
+		this.show_subscriberUsage= this.show_subscriberUsage.bind(this);
+	}
+	
+	show_subscriberInfo() {
+		var subscriberInfo = document.getElementById("subscriberInfo");
+		subscriberInfo.style.display = "block";
+		var subscriberUsage = document.getElementById("subscriberUsage");
+		subscriberUsage.style.display = "none";
+	}
+	
+	show_subscriberUsage() {
+		var subscriberUsage = document.getElementById("subscriberUsage");
+		subscriberUsage.style.display = "block";
+		var subscriberInfo = document.getElementById("subscriberInfo");
+		subscriberInfo.style.display = "none";
 	}
 
   render() {
 
     return (
       <div className="animated">
+		
         <Card>
           <CardHeader>
             <i className="icon-menu"></i>Subscriber Information
           </CardHeader>
+		  <div id="subscriber-main">
+			<a href="/#/telus/subscriberInfo" onClick={this.show_subscriberInfo}>Subscriber info</a><br/>
+			<a href="/#/telus/subscriberInfo" onClick={this.show_subscriberUsage}>Subscriber usage</a>
+		  </div>
           <CardBody>
-            <BootstrapTable data={this.state.responseData} version="4" striped hover pagination search options={this.options} insertRow deleteRow>
-				<TableHeaderColumn isKey dataField="initialdate" width='150px' dataSort>Initial Date</TableHeaderColumn>
-				<TableHeaderColumn dataField="datazipfile" width='150px' dataSort>Data Zip File</TableHeaderColumn>
-				<TableHeaderColumn dataField="billingaccountno" width='150px' dataSort>Billing Account No</TableHeaderColumn>
-				<TableHeaderColumn dataField="subscriber" width='150px' dataSort>Subscriber</TableHeaderColumn>
-				<TableHeaderColumn dataField="externalid" width='150px' dataSort>External Id</TableHeaderColumn>
-				<TableHeaderColumn dataField="billcycle" width='150px' dataSort>Bill Cycle</TableHeaderColumn>
-				<TableHeaderColumn dataField="billmonthnum" width='150px' dataSort>Bill Month Num</TableHeaderColumn>
-				<TableHeaderColumn dataField="billyearnum" width='150px' dataSort>Bill Year Num</TableHeaderColumn>
-				<TableHeaderColumn dataField="intervalstartdate" width='150px' dataSort>Interval Start Date</TableHeaderColumn>
-				<TableHeaderColumn dataField="intervalenddate" width='150px' dataSort>Interval End Date</TableHeaderColumn>
-				<TableHeaderColumn dataField="imei" width='150px' dataSort>IMEI</TableHeaderColumn>
-				<TableHeaderColumn dataField="billcycledaysremaining" width='150px' dataSort>Bill Cycle Days Remaining</TableHeaderColumn>
-				<TableHeaderColumn dataField="mtdusagedomesticindividual" width='150px' dataSort>MTD Usage Domestic Individual</TableHeaderColumn>
-				<TableHeaderColumn dataField="domesticindividualbucket" width='150px' dataSort>Domestic Individual Bucket</TableHeaderColumn>
-				<TableHeaderColumn dataField="domesticindividualusage" width='150px' dataSort>Domestic Individual Usage</TableHeaderColumn>
-				<TableHeaderColumn dataField="mtdusagedomesticsharedsinglesub" width='150px' dataSort>MTD Usage Domestic Shared Single Sub</TableHeaderColumn>
-				<TableHeaderColumn dataField="mtdusageroamingindividual" width='150px' dataSort>MTD Usage Roaming Individual</TableHeaderColumn>
-				<TableHeaderColumn dataField="roamingindividualbucket" width='150px' dataSort>Roaming Individual Bucket</TableHeaderColumn>
-				<TableHeaderColumn dataField="roamingindividualusage" width='150px' dataSort>Roaming Individual Usage</TableHeaderColumn>
-				<TableHeaderColumn dataField="mtdusageroamingsharedindividualsub" width='150px' dataSort>MTD Usage Roaming Shared Individual Sub</TableHeaderColumn>
-				<TableHeaderColumn dataField="overageusagedomestic" width='150px' dataSort>Overage Usage Domestic</TableHeaderColumn>
-				<TableHeaderColumn dataField="overageusageroaming" width='150px' dataSort>Overage Usage Roaming</TableHeaderColumn>
-				<TableHeaderColumn dataField="totalmtddomesticdatausage" width='150px' dataSort>Total MTD Domestic Data Usage</TableHeaderColumn>
-				<TableHeaderColumn dataField="totalincludeddomesticdata" width='150px' dataSort>Total Included Domestic Data</TableHeaderColumn>
-				<TableHeaderColumn dataField="domesticoveragechargedamount" width='150px' dataSort>Domestic Overage Charged Amount</TableHeaderColumn>
-				<TableHeaderColumn dataField="roamingoveragechargedamount" width='150px' dataSort>Roaming Overage Charged Amount</TableHeaderColumn>
+			<div id="subscriberInfo" >
+            <BootstrapTable data={this.state.responseData} condensed version="4" striped hover pagination search selectRow={this.selectRow} options={this.options}>
+                <TableHeaderColumn isKey dataField="subscriber" dataSort>Subscriber</TableHeaderColumn>
+				<TableHeaderColumn dataField="billingaccountno" dataSort>Billing Acc no.</TableHeaderColumn>
+				<TableHeaderColumn dataField="intervalstartdate" dataSort>Interval Start date</TableHeaderColumn>
+				<TableHeaderColumn dataField="intervalenddate" dataSort>Interval End date</TableHeaderColumn>
+				<TableHeaderColumn dataField="externalid" dataSort>External Id</TableHeaderColumn>
+				<TableHeaderColumn dataField="imei" dataSort>IMEI</TableHeaderColumn>
+				<TableHeaderColumn dataField="billcycle" dataSort>Bill Cycle</TableHeaderColumn>
             </BootstrapTable>
+			</div>
+			<div id="subscriberUsage">
+			<BootstrapTable data={this.state.responseData} condensed version="4" striped hover pagination search selectRow={this.selectRow} options={this.options} >
+                <TableHeaderColumn isKey dataField="subscriber" dataSort>Subscriber</TableHeaderColumn>
+				<TableHeaderColumn dataField="billcycledaysremaining" dataSort>billcycledaysremaining</TableHeaderColumn>
+				<TableHeaderColumn dataField="domesticindividualbucket" dataSort>Domestic individual bucket</TableHeaderColumn>
+				<TableHeaderColumn dataField="domesticindividualusage" dataSort>Domestic individual usage</TableHeaderColumn>
+				<TableHeaderColumn dataField="totalmtddomesticdatausage" dataSort>Total mtd domestic data usage</TableHeaderColumn>
+				<TableHeaderColumn dataField="totalincludeddomesticdata" dataSort>Total include domestic data</TableHeaderColumn>
+				<TableHeaderColumn dataField="datazipfile" dataSort>Data file</TableHeaderColumn>
+            </BootstrapTable>
+			</div>
           </CardBody>
         </Card>
       </div>
