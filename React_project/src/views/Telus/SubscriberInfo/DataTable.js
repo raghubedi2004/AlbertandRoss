@@ -45,7 +45,7 @@ class DataTable extends Component {
 			clickToSelect: true,
 			bgColor: "#8C68A6",
 			onSelect: (row, isSelect, rowIndex, e) => {
-				alert(row.subscriber);
+				//alert(row.subscriber);
 			}
 		}
 		this.show_subscriberInfo= this.show_subscriberInfo.bind(this);
@@ -82,7 +82,8 @@ class DataTable extends Component {
           <CardBody>
 			<div id="subscriberInfo" >
             <BootstrapTable headerClasses="header-class" data={this.state.responseData} condensed version="4" striped hover pagination search selectRow={this.selectRow} options={this.options}>
-                <TableHeaderColumn isKey dataField="subscriber" dataSort>Subscriber</TableHeaderColumn>
+				<TableHeaderColumn isKey dataField="id" hidden="true">Id</TableHeaderColumn>
+                <TableHeaderColumn dataField="subscriber" dataSort>Subscriber</TableHeaderColumn>
 				<TableHeaderColumn dataField="billingaccountno" dataSort>Billing Acc no.</TableHeaderColumn>
 				<TableHeaderColumn dataField="intervalstartdate" dataSort>Interval Start date</TableHeaderColumn>
 				<TableHeaderColumn dataField="intervalenddate" dataSort>Interval End date</TableHeaderColumn>
@@ -93,7 +94,8 @@ class DataTable extends Component {
 			</div>
 			<div id="subscriberUsage">
 			<BootstrapTable data={this.state.responseData} condensed version="4" striped hover pagination search selectRow={this.selectRow} options={this.options} >
-                <TableHeaderColumn isKey dataField="subscriber" dataSort>Subscriber</TableHeaderColumn>
+				<TableHeaderColumn isKey dataField="id" hidden="true">Id</TableHeaderColumn>
+                <TableHeaderColumn dataField="subscriber" dataSort>Subscriber</TableHeaderColumn>
 				<TableHeaderColumn dataField="billcycledaysremaining" dataSort>billcycledaysremaining</TableHeaderColumn>
 				<TableHeaderColumn dataField="domesticindividualbucket" dataSort>Domestic individual bucket</TableHeaderColumn>
 				<TableHeaderColumn dataField="domesticindividualusage" dataSort>Domestic individual usage</TableHeaderColumn>
