@@ -35,3 +35,9 @@
 .card-block {
   @extend .card-body;
 }
+
+.pagination li.active a {
+    color: #fff;
+    background-color: #8C68A6;
+    border-color: #8C68A6;
+}
