@@ -11,6 +11,7 @@ import Dashboard from '../../views/Dashboard/';
 
 // Telus
 import SubscriberInfo from '../../views/Telus/SubscriberInfo/';
+import test from '../../views/Telus/test/';
 
 
 class Full extends Component {
@@ -19,18 +20,16 @@ class Full extends Component {
       <div className="app">
         <Header />
         <div className="app-body">
-          <Sidebar {...this.props}/>
-          <main className="main">
+			<main className="main">
             <Breadcrumb />
             <Container fluid>
               <Switch>
                 <Route path="/dashboard" name="Dashboard" component={Dashboard}/>
                 <Route path="/telus/subscriberInfo" name="SubscriberInfo" component={SubscriberInfo}/>
-                <Redirect from="/" to="/dashboard"/>
+				<Redirect from="/" to="/dashboard"/>
               </Switch>
             </Container>
           </main>
-          <Aside />
         </div>
         <Footer />
       </div>
