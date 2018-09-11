@@ -25,3 +25,9 @@
 	color: #fff;
   }
 }
+
+.pagination li.active a.page-link {
+    color: #fff;
+    background-color: #8C68A6;
+    border-color: #8C68A6;
+}
