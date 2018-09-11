@@ -38,12 +38,12 @@ class DataTable extends Component {
 			clearSearch: true,
 			alwaysShowAllBtns: false,
 			withFirstAndLast: true,
-			pageSize: 5,
+			pageSize: 5
 		}
 		this.selectRow = {
 			mode: "checkbox",
 			clickToSelect: true,
-			bgColor: "rgb(238, 193, 213)",
+			bgColor: "#8C68A6",
 			onSelect: (row, isSelect, rowIndex, e) => {
 				alert(row.subscriber);
 			}
@@ -81,7 +81,7 @@ class DataTable extends Component {
 		  </div>
           <CardBody>
 			<div id="subscriberInfo" >
-            <BootstrapTable data={this.state.responseData} condensed version="4" striped hover pagination search selectRow={this.selectRow} options={this.options}>
+            <BootstrapTable headerClasses="header-class" data={this.state.responseData} condensed version="4" striped hover pagination search selectRow={this.selectRow} options={this.options}>
                 <TableHeaderColumn isKey dataField="subscriber" dataSort>Subscriber</TableHeaderColumn>
 				<TableHeaderColumn dataField="billingaccountno" dataSort>Billing Acc no.</TableHeaderColumn>
 				<TableHeaderColumn dataField="intervalstartdate" dataSort>Interval Start date</TableHeaderColumn>
