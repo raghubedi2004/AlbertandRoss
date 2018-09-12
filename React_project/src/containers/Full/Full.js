@@ -11,8 +11,6 @@ import Dashboard from '../../views/Dashboard/';
 
 // Telus
 import SubscriberInfo from '../../views/Telus/SubscriberInfo/';
-import test from '../../views/Telus/test/';
-
 
 class Full extends Component {
 
