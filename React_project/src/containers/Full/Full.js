@@ -25,9 +25,9 @@ class Full extends Component {
       <div className="app">
         <Header />
         <div className="app-body">
-			<main className="main">
+			<main className="main" >
             <Breadcrumb />
-            <Container fluid>
+            <Container fluid style={{padding: "0 0px"}}>
               <Switch>
                 <Route path="/dashboard" name="Dashboard" component={Dashboard}/>
                 <Route path="/telus/subscriberInfo" name="SubscriberInfo" component={SubscriberInfo}/>
