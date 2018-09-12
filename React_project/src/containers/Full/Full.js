@@ -15,6 +15,13 @@ import test from '../../views/Telus/test/';
 
 
 class Full extends Component {
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			pr: "test"
+		}
+	}
   render() {
     return (
       <div className="app">
@@ -26,10 +33,11 @@ class Full extends Component {
               <Switch>
                 <Route path="/dashboard" name="Dashboard" component={Dashboard}/>
                 <Route path="/telus/subscriberInfo" name="SubscriberInfo" component={SubscriberInfo}/>
-				<Redirect from="/" to="/dashboard"/>
+								<Redirect from="/" to="/dashboard"/>
               </Switch>
             </Container>
           </main>
+		  <Aside listNameFromParent={this.state.pr}/>
         </div>
         <Footer />
       </div>
