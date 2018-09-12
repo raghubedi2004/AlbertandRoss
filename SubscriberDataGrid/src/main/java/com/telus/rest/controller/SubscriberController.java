@@ -6,7 +6,6 @@ import java.util.List;
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,34 +26,42 @@ public class SubscriberController {
 	@Autowired
 	ServletContext servletContext; 
 
-	@Autowired
-	private Environment env;
-	
-    @RequestMapping(method=RequestMethod.GET, value="/loadSubscriberDataGrid")
+    @RequestMapping(method=RequestMethod.GET, value="/loadSubscribers")
     public List<SubscriberInfo> getSubscriberIdentifierListByAccountNumber(@RequestParam(value="ban", defaultValue="70776917") String ban) {
     	
     	
-    	String host = env.getProperty("spring.data.mongodb.host");
-    	String port = env.getProperty("spring.data.mongodb.port");
-    	
-			List<SubscriberIdentifierResponseDTO> subscriberInfoList = SubscriberDataGridClient.getSubscriberIdentifierListByAccountNumber(Integer.valueOf(ban), servletContext);
-			List<SubscriberResponseDTO> listSubscriberResponseDTO = new ArrayList<SubscriberResponseDTO>();
-			
-			for (SubscriberIdentifierResponseDTO subscriberIdentifierResponseDTO : subscriberInfoList) {
-				if (null != subscriberIdentifierResponseDTO.getSubscriptionId()) {
-					listSubscriberResponseDTO.add(SubscriberDataGridClient.getSubscriberBySubscriptionId(Long.parseLong(subscriberIdentifierResponseDTO.getSubscriptionId()), servletContext));
-				}
+		List<SubscriberIdentifierResponseDTO> subscriberInfoList = SubscriberDataGridClient.getSubscriberIdentifierListByAccountNumber(Integer.valueOf(ban), servletContext);
+		List<SubscriberResponseDTO> listSubscriberResponseDTO = new ArrayList<SubscriberResponseDTO>();
+		
+		for (SubscriberIdentifierResponseDTO subscriberIdentifierResponseDTO : subscriberInfoList) {
+			if (null != subscriberIdentifierResponseDTO.getSubscriptionId()) {
+				listSubscriberResponseDTO.add(SubscriberDataGridClient.getSubscriberBySubscriptionId(Long.parseLong(subscriberIdentifierResponseDTO.getSubscriptionId()), servletContext));
 			}
-			
-			MongoClient mongoClient = new MongoClient();
-			
-			MongoDBSubscriberDAO subscriberDAO = new MongoDBSubscriberDAO(mongoClient);
-			
-			subscriberDAO.createSubscribers(listSubscriberResponseDTO);
-			
-			List<SubscriberInfo> subscribers = subscriberDAO.readAllSubscriberInfos();
-			
-			return subscribers;
+		}
+		
+		MongoClient mongoClient = new MongoClient();
+		
+		MongoDBSubscriberDAO subscriberDAO = new MongoDBSubscriberDAO(mongoClient);
+		
+		subscriberDAO.createSubscribers(listSubscriberResponseDTO);
+		
+		List<SubscriberInfo> subscribers = subscriberDAO.readAllSubscriberInfos();
+		
+		return subscribers;
+		
+    }
+    
+    @RequestMapping(method=RequestMethod.GET, value="/retrieveSubscribers")
+    public List<SubscriberInfo> retrieveSubscribers() {
+    	
+		MongoClient mongoClient = new MongoClient();
+		
+		MongoDBSubscriberDAO subscriberDAO = new MongoDBSubscriberDAO(mongoClient);
+		
+		List<SubscriberInfo> subscribers = subscriberDAO.readAllSubscriberInfos();
+		
+		return subscribers;
+		
     }
 	
 	
