@@ -30,8 +30,8 @@ class Full extends Component {
             <Container fluid style={{padding: "0 0px"}}>
               <Switch>
                 <Route path="/dashboard" name="Dashboard" component={Dashboard}/>
-                <Route path="/telus/subscriberInfo" name="SubscriberInfo" component={SubscriberInfo}/>
-								<Redirect from="/" to="/dashboard"/>
+                <Route path="/telus/subscribers" name="SubscriberInfo" component={SubscriberInfo}/>
+		<Redirect from="/" to="/dashboard"/>
               </Switch>
             </Container>
           </main>
