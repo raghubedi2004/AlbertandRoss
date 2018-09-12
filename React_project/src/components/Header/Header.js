@@ -42,16 +42,29 @@ class Header extends Component {
           <span className="navbar-toggler-icon"></span>
         </NavbarToggler>
 		<NavbarBrand href="#"></NavbarBrand>
-        
+
         <Nav className="d-md-down-none" navbar>
           <NavItem className="px-3">
-            <NavLink href="/">Dashboard</NavLink>
+            <NavLink href="/"><span className="icon-basket"></span></NavLink>
+            <NavLink href="/">Buy</NavLink>
           </NavItem>
           <NavItem className="px-3">
+            <NavLink href="/#/telus/subscriberInfo"><span className="icon-people"></span></NavLink>
             <NavLink href="/#/telus/subscriberInfo">Subscribers</NavLink>
           </NavItem>
+          <NavItem className="px-3">
+            <NavLink href="#"><span className="icon-bulb"></span></NavLink>
+            <NavLink href="#">Analytics</NavLink>
+          </NavItem>
+          <NavItem className="px-3">
+            <NavLink href="#"><span className="icon-chart"></span></NavLink>
+            <NavLink href="#">Abc</NavLink>
+          </NavItem>
         </Nav>
-        
+
+        <NavbarToggler className="d-md-down-none" onClick={this.asideToggle}>
+          <span className="navbar-toggler-icon"></span>
+        </NavbarToggler>
       </header>
     );
   }
