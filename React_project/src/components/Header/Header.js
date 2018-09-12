@@ -58,7 +58,7 @@ class Header extends Component {
           </NavItem>
           <NavItem className="px-3">
             <NavLink href="#"><span className="icon-chart"></span></NavLink>
-            <NavLink href="#">Abc</NavLink>
+            <NavLink href="#">Automation</NavLink>
           </NavItem>
         </Nav>
 
