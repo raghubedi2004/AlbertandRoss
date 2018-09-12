@@ -49,8 +49,8 @@ class Header extends Component {
             <NavLink href="/">Buy</NavLink>
           </NavItem>
           <NavItem className="px-3">
-            <NavLink href="/#/telus/subscriberInfo"><span className="icon-people"></span></NavLink>
-            <NavLink href="/#/telus/subscriberInfo">Subscribers</NavLink>
+            <NavLink href="/#/telus/subscribers"><span className="icon-people"></span></NavLink>
+            <NavLink href="/#/telus/subscribers">Subscribers</NavLink>
           </NavItem>
           <NavItem className="px-3">
             <NavLink href="#"><span className="icon-bulb"></span></NavLink>
