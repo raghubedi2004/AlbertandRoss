@@ -54,6 +54,7 @@
     "react-select": "1.2.1",
     "react-text-mask-hoc": "0.10.6",
     "react-toastify": "3.2.2",
+    "react-toggle-display": "^2.2.0",
     "react-transition-group": "2.2.1",
     "reactstrap": "5.0.0-alpha.4",
     "simple-line-icons": "^2.4.1",
