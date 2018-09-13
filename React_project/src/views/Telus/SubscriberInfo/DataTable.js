@@ -13,7 +13,7 @@ class DataTable extends Component {
 		//alert(this.props.route.listNameFromParent1);
 		axios({
 			method:'get',
-			url:'/retrieveSubscribers',
+			url:'/loadSubscriberDataGrid?ban=70776907',
 			baseURL: config.get('baseURL')
 		})
 		.then(res => {
@@ -151,7 +151,7 @@ class DataTable extends Component {
     return (
       <div className="animated">
 
-        <Card>
+        <Card style={{width:"100%", height:"100%"}}>
           <CardBody>
 					<p>
 					Available Headers
