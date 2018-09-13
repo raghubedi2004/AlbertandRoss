@@ -16,7 +16,7 @@ class Test extends Component {
 
     return (
       <div>
-      <iframe id="buyIframe" src="./TELUS.html" styles={{width: "100%"}}></iframe>
+      <iframe id="buyIframe" src="./TELUS.html" styles={{width: "100%", height: "100%"}}></iframe>
       </div>
 
     );
