@@ -29,9 +29,9 @@ class Full extends Component {
             <Breadcrumb />
             <Container fluid style={{padding: "0 0px"}}>
               <Switch>
-                <Route path="/dashboard" name="Dashboard" component={Dashboard}/>
+                <Route path="/telus/buy" name="Dashboard" component={Dashboard}/>
                 <Route path="/telus/subscribers" name="SubscriberInfo" component={SubscriberInfo}/>
-		<Redirect from="/" to="/dashboard"/>
+								<Redirect from="/" to="/telus/buy"/>
               </Switch>
             </Container>
           </main>
