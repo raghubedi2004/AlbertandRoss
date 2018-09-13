@@ -35,7 +35,7 @@ class Full extends Component {
               </Switch>
             </Container>
           </main>
-		  <Aside listNameFromParent={this.state.pr}/>
+
         </div>
         <Footer />
       </div>
