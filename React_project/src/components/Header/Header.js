@@ -45,8 +45,8 @@ class Header extends Component {
 
         <Nav className="d-md-down-none" navbar>
           <NavItem className="px-3">
-            <NavLink href="/"><span className="icon-basket"></span></NavLink>
-            <NavLink href="/">Buy</NavLink>
+            <NavLink href="/#/telus/buy"><span className="icon-basket"></span></NavLink>
+            <NavLink href="/#/telus/buy">Buy</NavLink>
           </NavItem>
           <NavItem className="px-3">
             <NavLink href="/#/telus/subscribers"><span className="icon-people"></span></NavLink>
