@@ -3,6 +3,7 @@ import {Badge, Card, CardHeader, CardBody, CardFooter} from 'reactstrap';
 import axios from 'axios';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import Select from 'react-select';
+import ToggleDisplay from 'react-toggle-display';
 import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
 import 'react-select/dist/react-select.css';
 import config from 'react-global-configuration';
@@ -49,6 +50,7 @@ class DataTable extends Component {
 		super(props);
 		this.state = {
 			responseData:'',
+			showAvailableHeaderDropDown: false,
 			selectedHeaders: [],
 			headersAvailable:[],
 			hideSubscriberName: false,
@@ -87,6 +89,7 @@ class DataTable extends Component {
 		}
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleChangeHeaders = this.handleChangeHeaders.bind(this);
+		this.handleToggleHeaderSelection = this.handleToggleHeaderSelection.bind(this);
 	}
 
 	handleChangeHeaders(e) {
@@ -154,7 +157,11 @@ class DataTable extends Component {
 		alert(this.selected);
 	}
 
-
+	handleToggleHeaderSelection() {
+	    this.setState({
+	      showAvailableHeaderDropDown: !this.state.showAvailableHeaderDropDown
+	    });
+	  }
 
   render() {
 
@@ -163,10 +170,15 @@ class DataTable extends Component {
 
         <Card style={{width:"100%", height:"100%"}}>
           <CardBody>
-
-					Available Headers
+					<div class="buttonLink">
+					<button onClick={ () => this.handleToggleHeaderSelection() }>Available Headers</button>
+					</div>
+					<ToggleDisplay show={this.state.showAvailableHeaderDropDown}>
 					<Select multi={true} simpleValue={true} value={this.state.selectedHeaders} onChange={this.handleChangeHeaders} options={this.state.headersAvailable} closeOnSelect={false} clearable={false}/>
 					<br/><br/><br/>
+	        </ToggleDisplay>
+
+
 
 					<BootstrapTable headerClasses="header-class" data={this.state.responseData} condensed version="4" striped hover pagination search selectRow={this.selectRow} options={this.options}>
 						<TableHeaderColumn isKey dataField="id" hidden={true}>Id</TableHeaderColumn>
