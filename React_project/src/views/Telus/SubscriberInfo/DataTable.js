@@ -13,6 +13,8 @@ function statusFormat(cell, row) {
 		return <Badge color="success">Active</Badge>;
 	} else if(cell === 'C') {
 		return <Badge color="danger">Cancelled</Badge>;
+	} else if(cell === 'S') {
+		return <Badge color="warning">Suspended</Badge>;
 	}
 }
 
@@ -53,6 +55,7 @@ class DataTable extends Component {
 			showAvailableHeaderDropDown: false,
 			selectedHeaders: [],
 			headersAvailable:[],
+			bans:[],
 			hideSubscriberName: false,
 			hidePhoneNumber: false,
 			hideRatePlan: false,
@@ -163,7 +166,7 @@ class DataTable extends Component {
 	    });
 	  }
 
-  render() {
+	render() {
 
     return (
       <div className="animated">
