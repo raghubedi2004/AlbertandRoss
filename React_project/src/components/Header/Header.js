@@ -61,10 +61,6 @@ class Header extends Component {
             <NavLink href="#">Automation</NavLink>
           </NavItem>
         </Nav>
-
-        <NavbarToggler className="d-md-down-none" onClick={this.asideToggle}>
-          <span className="navbar-toggler-icon"></span>
-        </NavbarToggler>
       </header>
     );
   }
