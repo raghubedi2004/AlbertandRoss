@@ -170,7 +170,7 @@ class DataTable extends Component {
 
         <Card style={{width:"100%", height:"100%"}}>
           <CardBody>
-					<div class="buttonLink">
+					<div className="buttonLink">
 					<button onClick={ () => this.handleToggleHeaderSelection() }>Available Headers</button>
 					</div>
 					<ToggleDisplay show={this.state.showAvailableHeaderDropDown}>
