@@ -2,7 +2,7 @@ const routes = {
   '/': 'Home',
   '/telus/buy': 'Buy',
   '/components': 'Components',
-  '/telus/subscribers': 'Subscribers',
+  '/telus/subscribers': 'Subscription Management',
   '/charts': 'Charts',
   '/components/buttons': 'Buttons',
   '/components/social-buttons': 'Social Buttons',
