@@ -1,11 +1,19 @@
 import React, {Component} from 'react';
-import {Card, CardHeader, CardBody, CardFooter} from 'reactstrap';
+import {Badge, Card, CardHeader, CardBody, CardFooter} from 'reactstrap';
 import axios from 'axios';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import Select from 'react-select';
 import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
 import 'react-select/dist/react-select.css';
 import config from 'react-global-configuration';
+
+function statusFormat(cell, row) {
+	if (cell === 'A') {
+		return <Badge color="success">Active</Badge>;
+	} else if(cell === 'C') {
+		return <Badge color="danger">Cancelled</Badge>;
+	}
+}
 
 class DataTable extends Component {
 
@@ -67,7 +75,7 @@ class DataTable extends Component {
 		this.selectRow = {
 			mode: "checkbox",
 			clickToSelect: true,
-			bgColor: "#8C68A6",
+			bgColor: "#d6b4ef",
 			onSelect: (row, isSelect, rowIndex, e) => {
 				//alert(row.subscriber);
 				if (isSelect) {
@@ -146,6 +154,8 @@ class DataTable extends Component {
 		alert(this.selected);
 	}
 
+
+
   render() {
 
     return (
@@ -153,24 +163,25 @@ class DataTable extends Component {
 
         <Card style={{width:"100%", height:"100%"}}>
           <CardBody>
-					<p>
+
 					Available Headers
 					<Select multi={true} simpleValue={true} value={this.state.selectedHeaders} onChange={this.handleChangeHeaders} options={this.state.headersAvailable} closeOnSelect={false} clearable={false}/>
-					</p><br/><br/><br/>
-					<p>
+					<br/><br/><br/>
+
 					<BootstrapTable headerClasses="header-class" data={this.state.responseData} condensed version="4" striped hover pagination search selectRow={this.selectRow} options={this.options}>
 						<TableHeaderColumn isKey dataField="id" hidden={true}>Id</TableHeaderColumn>
 	          <TableHeaderColumn id="subscriberName" dataField="subscriberName" hidden={this.state.hideSubscriberName} width="150px" dataSort>Subscriber Name</TableHeaderColumn>
 						<TableHeaderColumn dataField="phoneNumber" width="130px" hidden={this.state.hidePhoneNumber} dataSort>Phone Number</TableHeaderColumn>
 						<TableHeaderColumn dataField="ratePlan" width="100px" hidden={this.state.hideRatePlan} dataSort>Rate Plan</TableHeaderColumn>
-						<TableHeaderColumn dataField="subscriptionStatus" width="90px" hidden={this.state.hideSubscriptionStatus} dataSort>Status</TableHeaderColumn>
+						<TableHeaderColumn dataField="subscriptionStatus" width="90px" hidden={this.state.hideSubscriptionStatus}
+							dataSort dataFormat={statusFormat}>Status</TableHeaderColumn>
 						<TableHeaderColumn dataField="ban" width="80px" hidden={this.state.hideBan} dataSort>Ban</TableHeaderColumn>
 						<TableHeaderColumn dataField="sim" width="160px" hidden={this.state.hideSim} dataSort>SIM</TableHeaderColumn>
 						<TableHeaderColumn dataField="contractStartDate" hidden={this.state.hideContractStartDate} width="180px" dataSort>Contract Start Date</TableHeaderColumn>
 						<TableHeaderColumn dataField="contractEndDate" width="180px" hidden={this.state.hideContractEndDate} dataSort>Contract End Date</TableHeaderColumn>
 						<TableHeaderColumn dataField="deviceBalance" width="130px"  hidden={this.state.hideDeviceBalance} dataSort>Device Balance</TableHeaderColumn>
           </BootstrapTable>
-					</p>
+
           </CardBody>
 		    </Card>
       </div>
