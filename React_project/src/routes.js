@@ -1,6 +1,6 @@
 const routes = {
   '/': 'Home',
-  '/dashboard': 'Dashboard',
+  '/telus/buy': 'Buy',
   '/components': 'Components',
   '/telus/subscribers': 'Subscribers',
   '/charts': 'Charts',
