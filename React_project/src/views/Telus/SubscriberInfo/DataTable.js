@@ -13,7 +13,7 @@ class DataTable extends Component {
 		//alert(this.props.route.listNameFromParent1);
 		axios({
 			method:'get',
-			url:'/loadSubscriberDataGrid?ban=70776907',
+			url:'/retrieveSubscribers',
 			baseURL: config.get('baseURL')
 		})
 		.then(res => {
