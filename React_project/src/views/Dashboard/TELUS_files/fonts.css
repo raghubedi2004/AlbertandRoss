@@ -1,0 +1,84 @@
+@font-face {
+	font-family: "telusweb";
+	src:
+		url("//static.telus.com/common/fonts/56be84de-9d60-4089-8df0-0ea6ec786b84.eot?#iefix");
+	src:
+		url("//static.telus.com/common/fonts/56be84de-9d60-4089-8df0-0ea6ec786b84.eot?#iefix")
+		format("eot"),
+		url("//static.telus.com/common/fonts/50d35bbc-dfd4-48f1-af16-cf058f69421d.woff")
+		format("woff"),
+		url("//static.telus.com/common/fonts/278bef59-6be1-4800-b5ac-1f769ab47430.ttf")
+		format("truetype"),
+		url("//static.telus.com/common/fonts/2e309b1b-08b8-477f-bc9e-7067cf0af0b3.svg#2e309b1b-08b8-477f-bc9e-7067cf0af0b3")
+		format("svg");
+	font-weight: 200;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "telusweb";
+	src:
+		url("//static.telus.com/common/fonts/ae1656aa-5f8f-4905-aed0-93e667bd6e4a.eot?#iefix");
+	src:
+		url("//static.telus.com/common/fonts/ae1656aa-5f8f-4905-aed0-93e667bd6e4a.eot?#iefix")
+		format("eot"),
+		url("//static.telus.com/common/fonts/530dee22-e3c1-4e9f-bf62-c31d510d9656.woff")
+		format("woff"),
+		url("//static.telus.com/common/fonts/688ab72b-4deb-4e15-a088-89166978d469.ttf")
+		format("truetype"),
+		url("//static.telus.com/common/fonts/7816f72f-f47e-4715-8cd7-960e3723846a.svg#7816f72f-f47e-4715-8cd7-960e3723846a")
+		format("svg");
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "telusweb";
+	src:
+		url("//static.telus.com/common/fonts/b7693a83-b861-4aa6-85e0-9ecf676bc4d6.eot?#iefix");
+	src:
+		url("//static.telus.com/common/fonts/b7693a83-b861-4aa6-85e0-9ecf676bc4d6.eot?#iefix")
+		format("eot"),
+		url("//static.telus.com/common/fonts/bcf54343-d033-41ee-bbd7-2b77df3fe7ba.woff")
+		format("woff"),
+		url("//static.telus.com/common/fonts/b0ffdcf0-26da-47fd-8485-20e4a40d4b7d.ttf")
+		format("truetype"),
+		url("//static.telus.com/common/fonts/da09f1f1-062a-45af-86e1-2bbdb3dd94f9.svg#da09f1f1-062a-45af-86e1-2bbdb3dd94f9")
+		format("svg");
+	font-weight: 600;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "telusweb";
+	src:
+		url("//static.telus.com/common/fonts/b7693a83-b861-4aa6-85e0-9ecf676bc4d6.eot?#iefix");
+	src:
+		url("//static.telus.com/common/fonts/b7693a83-b861-4aa6-85e0-9ecf676bc4d6.eot?#iefix")
+		format("eot"),
+		url("//static.telus.com/common/fonts/bcf54343-d033-41ee-bbd7-2b77df3fe7ba.woff")
+		format("woff"),
+		url("//static.telus.com/common/fonts/b0ffdcf0-26da-47fd-8485-20e4a40d4b7d.ttf")
+		format("truetype"),
+		url("//static.telus.com/common/fonts/da09f1f1-062a-45af-86e1-2bbdb3dd94f9.svg#da09f1f1-062a-45af-86e1-2bbdb3dd94f9")
+		format("svg");
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "telusweb";
+	src:
+		url("//static.telus.com/common/fonts/h65/07fe0fec-b63f-4963-8ee1-535528b67fdb.eot?#iefix");
+	src:
+		url("//static.telus.com/common/fonts/h65/07fe0fec-b63f-4963-8ee1-535528b67fdb.eot?#iefix")
+		format("eot"),
+		url("//static.telus.com/common/fonts/h65/60be5c39-863e-40cb-9434-6ebafb62ab2b.woff")
+		format("woff"),
+		url("//static.telus.com/common/fonts/h65/4c6503c9-859b-4d3b-a1d5-2d42e1222415.ttf")
+		format("truetype"),
+		url("//static.telus.com/common/fonts/h65/36c182c6-ef98-4021-9b0d-d63122c2bbf5.svg#36c182c6-ef98-4021-9b0d-d63122c2bbf5")
+		format("svg");
+	font-weight: 800;
+	font-style: normal;
+}

@@ -1,0 +1,58 @@
+div.tax-info .easy-pay:hover + .tooltip_bubble, span.tax-info .easy-pay:hover + .tooltip_bubble {
+    display: block;
+}
+
+.content.product section table .monthlytotal {
+    font-size: 30px;
+}
+
+img.lazy {
+   /* width: 700px; 
+    height: 467px; */
+    display: block;
+    
+    /* optional way, set loading as background 
+    background-image: url('../img/spinner.gif');
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    */
+}
+
+.jscroll-loading {
+    text-align: center;
+}
+.js-qty_lable{
+	display: inline-block;
+	margin-left:-20px;
+}
+
+.js-accessory_qty{
+	display: inline-block;
+}
+
+.margin-left-70{
+	margin-left:-70px;
+}
+
+.qty-select-container{
+	display: inline-block;
+	height: 35px;
+	width: 80px;
+}
+.js-accessory_qty_text{
+	display: inline-block  !important;	
+	width: 35% !important;
+}
+
+.accqty{
+    border: thin solid #e7e7e7 !important; 
+}
+
+.frg-icon-error-border{border-color: #ff0000 #ff0000 #ff0000 transparent !important;}
+
+.frg-icon-email-error-border{border-color: #ff0000 #ff0000 #ff0000 #ff0000 !important;}
+
+div.shipping-inst .inst:hover + .tooltip_bubble, span.shipping-inst .inst:hover + .tooltip_bubble {
+    display: block;
+    display: inline-block;
+}

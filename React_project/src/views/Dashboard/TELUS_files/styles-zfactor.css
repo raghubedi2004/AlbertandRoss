@@ -1,0 +1,33 @@
+
+
+.button-menu .profile .gap_left {
+    margin-right: 5px;
+}
+
+.button-menu .profile ul > li > ul {
+    margin: -18px 0 0 -40px;
+    width: 200px;
+}
+.button-menu .profile ul > li > ul a:link, .button-menu .profile ul > li > ul a:visited, .button-menu .profile ul > li > ul a:hover, .button-menu .profile ul > li > ul a:active {
+    color: #3d2557;
+    display: block;
+    padding: 0 23px;
+}
+.button-menu .profile ul > li > ul li {
+    background-color: #fff;
+    border-left: thin solid #ececec;
+    border-right: thin solid #ececec;
+}
+.button-menu .profile ul > li > ul li:first-child {
+    background: transparent url("../img/triangle.png") no-repeat scroll 140px 0;
+    border: medium none;
+    height: 15px;
+}
+.button-menu .profile ul > li > ul li:nth-child(2) a {
+    padding-top: 15px;
+}
+
+.button-menu .profile ul > li > ul li:last-child a {
+    border-bottom: thin solid #ececec;
+    padding: 0 23px 15px;
+}
