@@ -223,26 +223,9 @@ class DataTable extends Component {
           </BootstrapTable>
           </CardBody>
 					<Aside {...this.state}/>
-					<OtherChild {...this.state} />
 		    </Card>
       </div>
     );
-  }
-}
-
-class OtherChild extends React.Component {
-  render() {
-    return (
-      <div>
-        <h4>OtherChild</h4>
-        Value in OtherChild Props:
-				{this.props.selectedRows.map(function(subscriber, i) {
-			    return(<h1>a{subscriber.subscriberName}b</h1>);
-			  })
-			  }
-				<h2>{this.props.test}</h2>
-      </div>
-    )
   }
 }
 
