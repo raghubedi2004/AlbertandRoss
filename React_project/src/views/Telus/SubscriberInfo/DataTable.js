@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-import {Badge, Card, CardHeader, CardBody, CardFooter} from 'reactstrap';
+import {Badge, Card, CardHeader, CardBody, CardFooter, NavbarToggler} from 'reactstrap';
 import axios from 'axios';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import Select from 'react-select';
 import ToggleDisplay from 'react-toggle-display';
+import Aside from '../../../components/Aside/';
 import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
 import 'react-select/dist/react-select.css';
 import config from 'react-global-configuration';
@@ -55,7 +56,7 @@ class DataTable extends Component {
 			showAvailableHeaderDropDown: false,
 			selectedHeaders: [],
 			headersAvailable:[],
-			bans:[],
+			selectedRows:[],
 			hideSubscriberName: false,
 			hidePhoneNumber: false,
 			hideRatePlan: false,
@@ -65,8 +66,8 @@ class DataTable extends Component {
 			hideContractStartDate: false,
 			hideContractEndDate: false,
 			hideDeviceBalance: false,
+			test: 'abc'
 		};
-		this.selected = [];
 		this.options = {
 			sortIndicator: true,
 			hideSizePerPage: true,
@@ -76,23 +77,24 @@ class DataTable extends Component {
 			alwaysShowAllBtns: false,
 			withFirstAndLast: true,
 			sizePerPage: 20,
-		}
+		};
 		this.selectRow = {
 			mode: "checkbox",
 			clickToSelect: true,
 			bgColor: "#d6b4ef",
 			onSelect: (row, isSelect, rowIndex, e) => {
-				//alert(row.subscriber);
-				if (isSelect) {
-					this.selected.push(row.subscriber)
-				} else {
-					this.selected.pop(row.subscriber);
-				}
+				this.handleSelectSubscriber(row, isSelect, e);
 			}
-		}
-		this.handleSubmit = this.handleSubmit.bind(this);
+		};
 		this.handleChangeHeaders = this.handleChangeHeaders.bind(this);
 		this.handleToggleHeaderSelection = this.handleToggleHeaderSelection.bind(this);
+		this.handleSelectSubscriber = this.handleSelectSubscriber.bind(this);
+	}
+
+	asideToggle(e) {
+		//alert(this.state.selectedRows);
+		//e.preventDefault();
+		document.body.classList.toggle('aside-menu-hidden');
 	}
 
 	handleChangeHeaders(e) {
@@ -156,12 +158,36 @@ class DataTable extends Component {
 		//console.log(`Option selected:`, this.state.selectedHeaders);
   }
 
-	handleSubmit() {
-		alert(this.selected);
+	handleSelectSubscriber(row, isSelect, e) {
+		var rows = this.state.selectedRows;
+		var arrayLength = rows.length;
+		if (isSelect) {
+			rows.push(row);
+			this.setState({test: 'xyz'});
+		} else {
+			for (var i = 0; i < arrayLength; i++) {
+				if(rows[i].id === row.id) {
+					rows.splice(i, 1);
+					this.setState({test: 'abc'});
+					break;
+				}
+			}
+		}
+
+
+		this.setState({selectedRows: rows});
+
+		//if (isSelect) {
+		//	this.state.selectedRows.push(row.subscriberName);
+		//	this.setState({abc: abc+","+row.subscriberName});
+		//} else {
+		//	this.state.selectedRows.pop(row.subscriberName);
+		//	this.setState({abc: "test"});
+		//}
 	}
 
 	handleToggleHeaderSelection() {
-	    this.setState({
+		  this.setState({
 	      showAvailableHeaderDropDown: !this.state.showAvailableHeaderDropDown
 	    });
 	  }
@@ -180,8 +206,7 @@ class DataTable extends Component {
 					<Select multi={true} simpleValue={true} value={this.state.selectedHeaders} onChange={this.handleChangeHeaders} options={this.state.headersAvailable} closeOnSelect={false} clearable={false}/>
 					<br/><br/><br/>
 	        </ToggleDisplay>
-
-
+					<button onClick={ () => this.asideToggle() }>Actions</button>
 
 					<BootstrapTable headerClasses="header-class" data={this.state.responseData} condensed version="4" striped hover pagination search selectRow={this.selectRow} options={this.options}>
 						<TableHeaderColumn isKey dataField="id" hidden={true}>Id</TableHeaderColumn>
@@ -196,11 +221,28 @@ class DataTable extends Component {
 						<TableHeaderColumn dataField="contractEndDate" width="180px" hidden={this.state.hideContractEndDate} dataSort>Contract End Date</TableHeaderColumn>
 						<TableHeaderColumn dataField="deviceBalance" width="130px"  hidden={this.state.hideDeviceBalance} dataSort>Device Balance</TableHeaderColumn>
           </BootstrapTable>
-
           </CardBody>
+					<Aside {...this.state}/>
+					<OtherChild {...this.state} />
 		    </Card>
       </div>
     );
+  }
+}
+
+class OtherChild extends React.Component {
+  render() {
+    return (
+      <div>
+        <h4>OtherChild</h4>
+        Value in OtherChild Props:
+				{this.props.selectedRows.map(function(subscriber, i) {
+			    return(<h1>a{subscriber.subscriberName}b</h1>);
+			  })
+			  }
+				<h2>{this.props.test}</h2>
+      </div>
+    )
   }
 }
 
