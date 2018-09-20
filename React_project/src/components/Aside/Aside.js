@@ -6,7 +6,8 @@ import axios from 'axios';
 import qs from 'qs';
 
 class Aside extends Component {
-  constructor(props) {
+
+	constructor(props) {
     super(props);
 
     this.toggle = this.toggle.bind(this);
@@ -68,15 +69,15 @@ class Aside extends Component {
 				var map = new Map();
 				map = config.get('ratePlanMap');
 				console.log(map.values);
-				// call API to fetch all rate plans
-				var dummyPlans = [];
-				const dummyPlansIds = Object.keys(config.get('ratePlanMap')); //['XPAT30U','XPPDCPTRV', 'XPAT30U', 'XPAT55P1P'];
-				var totalPlans = dummyPlansIds.length;
+
+				var plans = [];
+				const plansIds = Object.keys(config.get('ratePlanMap')); //['XPAT30U','XPPDCPTRV', 'XPAT30U', 'XPAT55P1P'];
+				var totalPlans = plansIds.length;
 				for (var i = 0; i < totalPlans; i++) {
-					var planName = config.get('ratePlanMap.'+dummyPlansIds[i]);
-					dummyPlans.push(planName);
+					var planName = config.get('ratePlanMap.'+plansIds[i]);
+					plans.push(plansIds[i]+"-###-"+planName);
 				}
-				this.setState({availableRatePlans:dummyPlans});
+				this.setState({availableRatePlans:plans});
 			}
       this.setState({
         activeTab: tab
@@ -142,8 +143,10 @@ class Aside extends Component {
 					<br/>
 					<div id="listRatePlansToSelect">
 					{this.state.availableRatePlans.map(function(ratePlan, i) {
+						const planId = ratePlan.substring(0, ratePlan.indexOf('-###-'));
+						const planName = ratePlan.substring(planId.length+5, ratePlan.length);
 						return(
-							<p><input type="radio" name="ratePlanRadio" value={ratePlan}/> {ratePlan}</p>
+							<p><input type="radio" name="ratePlanRadio" value={planId}/> {planName}</p>
 							);
 					})
 					}
