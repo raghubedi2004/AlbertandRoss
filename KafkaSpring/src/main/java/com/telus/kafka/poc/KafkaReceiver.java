@@ -22,6 +22,8 @@ public class KafkaReceiver {
     	
         System.out.println("Receiver on topic1: " + consumerRecord.toString());
         
+        mongoClient.close();
+        
     }
 
     @KafkaListener(topics = "topic2")
