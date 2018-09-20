@@ -25,7 +25,7 @@ class Full extends Component {
       <div className="app">
         <Header />
         <div className="app-body">
-			<main className="main" >
+					<main className="main" >
             <Breadcrumb />
             <Container fluid style={{padding: "0 0px"}}>
               <Switch>
@@ -35,7 +35,6 @@ class Full extends Component {
               </Switch>
             </Container>
           </main>
-
         </div>
         <Footer />
       </div>
