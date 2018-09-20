@@ -8,6 +8,7 @@ import Aside from '../../../components/Aside/';
 import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
 import 'react-select/dist/react-select.css';
 import config from 'react-global-configuration';
+import ratePlanMap from 'react-global-configuration';
 
 function statusFormat(cell, row) {
 	if (cell === 'A') {
@@ -17,6 +18,14 @@ function statusFormat(cell, row) {
 	} else if(cell === 'S') {
 		return <Badge color="warning">Suspended</Badge>;
 	}
+}
+
+function ratePlanFormat(cell, row) {
+	var ratePlanDisplayName = config.get('ratePlanMap.'+cell);
+	if (ratePlanDisplayName === null) {
+		ratePlanDisplayName = cell;
+	}
+	return ratePlanDisplayName;
 }
 
 class DataTable extends Component {
@@ -66,7 +75,7 @@ class DataTable extends Component {
 			hideContractStartDate: false,
 			hideContractEndDate: false,
 			hideDeviceBalance: false,
-			test: 'abc'
+			actionPanelOpen: false
 		};
 		this.options = {
 			sortIndicator: true,
@@ -163,17 +172,21 @@ class DataTable extends Component {
 		var arrayLength = rows.length;
 		if (isSelect) {
 			rows.push(row);
-			this.setState({test: 'xyz'});
+			if (arrayLength === 0) {
+				this.asideToggle();
+			}
 		} else {
 			for (var i = 0; i < arrayLength; i++) {
 				if(rows[i].id === row.id) {
 					rows.splice(i, 1);
-					this.setState({test: 'abc'});
 					break;
 				}
 			}
+			var updatedRowLength = rows.length;
+			if (updatedRowLength === 0) {
+				this.asideToggle();
+			}
 		}
-
 
 		this.setState({selectedRows: rows});
 
@@ -206,13 +219,17 @@ class DataTable extends Component {
 					<Select multi={true} simpleValue={true} value={this.state.selectedHeaders} onChange={this.handleChangeHeaders} options={this.state.headersAvailable} closeOnSelect={false} clearable={false}/>
 					<br/><br/><br/>
 	        </ToggleDisplay>
-					<button onClick={ () => this.asideToggle() }>Actions</button>
-
+					{/*<div className="asideToggleButton">
+					<NavbarToggler className="d-md-down-none" onClick={this.asideToggle}>
+	          <span className="navbar-toggler-icon"></span>
+	        </NavbarToggler>
+					</div> */}
 					<BootstrapTable headerClasses="header-class" data={this.state.responseData} condensed version="4" striped hover pagination search selectRow={this.selectRow} options={this.options}>
 						<TableHeaderColumn isKey dataField="id" hidden={true}>Id</TableHeaderColumn>
 	          <TableHeaderColumn id="subscriberName" dataField="subscriberName" hidden={this.state.hideSubscriberName} width="150px" dataSort>Subscriber Name</TableHeaderColumn>
 						<TableHeaderColumn dataField="phoneNumber" width="130px" hidden={this.state.hidePhoneNumber} dataSort>Phone Number</TableHeaderColumn>
-						<TableHeaderColumn dataField="ratePlan" width="100px" hidden={this.state.hideRatePlan} dataSort>Rate Plan</TableHeaderColumn>
+						<TableHeaderColumn dataField="ratePlan" width="210px" hidden={this.state.hideRatePlan}
+							dataFormat={ratePlanFormat} dataSort>Rate Plan</TableHeaderColumn>
 						<TableHeaderColumn dataField="subscriptionStatus" width="90px" hidden={this.state.hideSubscriptionStatus}
 							dataSort dataFormat={statusFormat}>Status</TableHeaderColumn>
 						<TableHeaderColumn dataField="ban" width="80px" hidden={this.state.hideBan} dataSort>Ban</TableHeaderColumn>
@@ -221,7 +238,7 @@ class DataTable extends Component {
 						<TableHeaderColumn dataField="contractEndDate" width="180px" hidden={this.state.hideContractEndDate} dataSort>Contract End Date</TableHeaderColumn>
 						<TableHeaderColumn dataField="deviceBalance" width="130px"  hidden={this.state.hideDeviceBalance} dataSort>Device Balance</TableHeaderColumn>
           </BootstrapTable>
-          </CardBody>
+					</CardBody>
 					<Aside {...this.state}/>
 		    </Card>
       </div>
