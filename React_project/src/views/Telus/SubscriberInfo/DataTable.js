@@ -205,7 +205,7 @@ class DataTable extends Component {
 		//}
 	}
 
-	handleRefreshDataTable(e) {
+	componentDidUpdate() {
 		axios({
 			method:'get',
 			url:'/retrieveSubscribers',
@@ -215,7 +215,9 @@ class DataTable extends Component {
         const response = res.data;
 		this.setState({responseData:response});
 		})
+	}
 
+	handleRefreshDataTable(e) {
 		axios({
 			method:'get',
 			url:'/retrieveSubscribers',
