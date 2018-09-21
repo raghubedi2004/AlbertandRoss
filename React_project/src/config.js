@@ -1,7 +1,7 @@
 const config = {
     baseURL: 'http://d011728:9090',
     subscribersPageUrl: '/#/telus/subscribers',
-    kafkaBaseUrl: 'http://d011728:8585',
+    kafkaBaseUrl: 'http://d011728:8585/kafka/topic1',
     ratePlanMap: {
       'XPPDCPTRV': 'Corporate traveller 105 PDA',
       'XPAT30U': 'Corp Advantage UL 30',
