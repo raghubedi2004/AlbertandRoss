@@ -10,6 +10,11 @@ import 'react-select/dist/react-select.css';
 import config from 'react-global-configuration';
 import ratePlanMap from 'react-global-configuration';
 
+function filterType(cell, row) {
+  // just return type for filtering or searching.
+  return cell.type;
+}
+
 function statusFormat(cell, row) {
 	if (cell === 'A') {
 		return <Badge color="success">Active</Badge>;
@@ -30,7 +35,7 @@ function ratePlanFormat(cell, row) {
 
 class DataTable extends Component {
 
-	componentWillMount(){
+	componentWillMount() {
 		//alert(this.props.route.listNameFromParent1);
 		axios({
 			method:'get',
@@ -98,6 +103,7 @@ class DataTable extends Component {
 		this.handleChangeHeaders = this.handleChangeHeaders.bind(this);
 		this.handleToggleHeaderSelection = this.handleToggleHeaderSelection.bind(this);
 		this.handleSelectSubscriber = this.handleSelectSubscriber.bind(this);
+		this.handleRefreshDataTable = this.handleRefreshDataTable.bind(this);
 	}
 
 	asideToggle(e) {
@@ -199,6 +205,28 @@ class DataTable extends Component {
 		//}
 	}
 
+	handleRefreshDataTable(e) {
+		axios({
+			method:'get',
+			url:'/retrieveSubscribers',
+			baseURL: config.get('baseURL')
+		})
+		.then(res => {
+        const response = res.data;
+		this.setState({responseData:response});
+		})
+
+		axios({
+			method:'get',
+			url:'/retrieveSubscribers',
+			baseURL: config.get('baseURL')
+		})
+		.then(res => {
+        const response = res.data;
+		this.setState({responseData:response});
+		})
+	}
+
 	handleToggleHeaderSelection() {
 		  this.setState({
 	      showAvailableHeaderDropDown: !this.state.showAvailableHeaderDropDown
@@ -229,7 +257,7 @@ class DataTable extends Component {
 	          <TableHeaderColumn id="subscriberName" dataField="subscriberName" hidden={this.state.hideSubscriberName} width="150px" dataSort>Subscriber Name</TableHeaderColumn>
 						<TableHeaderColumn dataField="phoneNumber" width="130px" hidden={this.state.hidePhoneNumber} dataSort>Phone Number</TableHeaderColumn>
 						<TableHeaderColumn dataField="ratePlan" width="210px" hidden={this.state.hideRatePlan}
-							dataFormat={ratePlanFormat} dataSort>Rate Plan</TableHeaderColumn>
+							dataFormat={ratePlanFormat} filterFormatted dataSort>Rate Plan</TableHeaderColumn>
 						<TableHeaderColumn dataField="subscriptionStatus" width="90px" hidden={this.state.hideSubscriptionStatus}
 							dataSort dataFormat={statusFormat}>Status</TableHeaderColumn>
 						<TableHeaderColumn dataField="ban" width="80px" hidden={this.state.hideBan} dataSort>Ban</TableHeaderColumn>
@@ -239,7 +267,7 @@ class DataTable extends Component {
 						<TableHeaderColumn dataField="deviceBalance" width="130px"  hidden={this.state.hideDeviceBalance} dataSort>Device Balance</TableHeaderColumn>
           </BootstrapTable>
 					</CardBody>
-					<Aside {...this.state}/>
+					<Aside {...this.state} refreshData={this.handleRefreshDataTable.bind(this)}/>
 		    </Card>
       </div>
     );
