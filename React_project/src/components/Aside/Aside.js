@@ -48,8 +48,8 @@ class Aside extends Component {
 		const obj = {};
 		obj['subIds'] = selectedSuIds;
 		obj['ratePlan'] = changePlanTo;
-		
-		axios.post('http://d011728:8585/kafka/topic1', obj).then(response => {
+
+		axios.post(config.get('kafkaBaseUrl'), obj).then(response => {
 			console.log(response)
 		}).catch(error => {
 			console.log(error.response)
