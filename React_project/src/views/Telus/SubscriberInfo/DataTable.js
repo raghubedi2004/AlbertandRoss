@@ -179,7 +179,9 @@ class DataTable extends Component {
 		if (isSelect) {
 			rows.push(row);
 			if (arrayLength === 0) {
-				this.asideToggle();
+				// if user selects first row in the table
+				this.setState({actionPanelOpen: true});
+				this.asideToggle(false);
 			}
 		} else {
 			for (var i = 0; i < arrayLength; i++) {
@@ -190,6 +192,7 @@ class DataTable extends Component {
 			}
 			var updatedRowLength = rows.length;
 			if (updatedRowLength === 0) {
+				this.setState({actionPanelOpen: false});
 				this.asideToggle();
 			}
 		}
@@ -205,18 +208,6 @@ class DataTable extends Component {
 		//}
 	}
 
-	componentDidUpdate() {
-		axios({
-			method:'get',
-			url:'/retrieveSubscribers',
-			baseURL: config.get('baseURL')
-		})
-		.then(res => {
-        const response = res.data;
-		this.setState({responseData:response});
-		})
-	}
-
 	handleRefreshDataTable(e) {
 		axios({
 			method:'get',
@@ -226,14 +217,16 @@ class DataTable extends Component {
 		.then(res => {
         const response = res.data;
 		this.setState({responseData:response});
-		})
+	});
+	this.forceUpdate();
+	this.setState({ state: this.state });
 	}
 
 	handleToggleHeaderSelection() {
-		  this.setState({
-	      showAvailableHeaderDropDown: !this.state.showAvailableHeaderDropDown
-	    });
-	  }
+	  this.setState({
+      showAvailableHeaderDropDown: !this.state.showAvailableHeaderDropDown
+    });
+  }
 
 	render() {
 
