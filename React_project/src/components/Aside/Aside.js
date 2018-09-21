@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {TabContent, TabPane, Nav, NavItem, NavLink, Progress, Label, Input} from 'reactstrap';
+import {TabContent, TabPane, Nav, NavItem, NavLink, Progress, Label, Input, Button} from 'reactstrap';
 import classnames from 'classnames';
 import config from 'react-global-configuration';
 import axios from 'axios';
@@ -18,7 +18,12 @@ class Aside extends Component {
 			subscriberIds: []
     };
 		this.handleChangeRatePlan = this.handleChangeRatePlan.bind(this);
+		this.handleRefreshParent = this.handleRefreshParent.bind(this);
   }
+
+	handleRefreshParent(e) {
+		this.props.refreshData(e);
+	}
 
 	handleChangeRatePlan() {
 		var plans = document.getElementsByName("ratePlanRadio");
@@ -31,29 +36,32 @@ class Aside extends Component {
 				break;
 			}
 		}
-		
-		var selectedSubscribers = this.props.selectedRows;
-		var selectedSuIds = [];
-		for (var index = 0; index < selectedSubscribers.length; index++) {
-			selectedSuIds.push(selectedSubscribers[index].id);
+		if (changePlanTo != null || changePlanTo != undefined) {
+			var selectedSubscribers = this.props.selectedRows;
+			var selectedSuIds = [];
+			for (var index = 0; index < selectedSubscribers.length; index++) {
+				selectedSuIds.push(selectedSubscribers[index].id);
+			}
+			this.setState({subscriberIds: selectedSuIds});
+			console.log("Plan selected : " + changePlanTo + "\nsubs : "+ selectedSuIds);
+
+			const data = {
+			    'subIds' : selectedSuIds,
+			    'ratePlan': changePlanTo
+			};
+			const obj = {};
+			obj['subIds'] = selectedSuIds;
+			obj['ratePlan'] = changePlanTo;
+
+			axios.post(config.get('kafkaBaseUrl'), obj).then(response => {
+				console.log(response);
+			}).catch(error => {
+				console.log(error.response)
+			});
+			this.handleRefreshParent();
 		}
-		this.setState({subscriberIds: selectedSuIds});
-		alert("Plan selected : " + changePlanTo + "\nsubs : "+ selectedSuIds);
-
-		const data = {
-		    'subIds' : selectedSuIds,
-		    'ratePlan': changePlanTo
-		};
-		const obj = {};
-		obj['subIds'] = selectedSuIds;
-		obj['ratePlan'] = changePlanTo;
-
-		axios.post(config.get('kafkaBaseUrl'), obj).then(response => {
-			console.log(response)
-		}).catch(error => {
-			console.log(error.response)
-		});
 	}
+
 
 
   toggle(tab) {
@@ -143,7 +151,8 @@ class Aside extends Component {
 							);
 					})
 					}
-					<p><button onClick={ () => this.handleChangeRatePlan() }>Submit</button></p>
+					<p>
+					<Button color="success" onClick={ () => this.handleChangeRatePlan() }>Submit</Button></p>
 					</div>
 
 					<div id="backButton">
