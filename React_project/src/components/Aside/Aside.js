@@ -151,12 +151,19 @@ class Aside extends Component {
 							);
 					})
 					}
-					<p>
-					<Button color="success" onClick={ () => this.handleChangeRatePlan() }>Submit</Button></p>
-					</div>
 
-					<div id="backButton">
-					<p><a href="/#/telus/subscribers" onClick={() => { this.toggle('chooseActions');}}>Back</a></p>
+					</div>
+					<div id="submitButtons">
+					<table>
+						<tr>
+							<td width="80%">
+								<p><a href="/#/telus/subscribers" onClick={() => { this.toggle('chooseActions');}}>Back</a></p>
+							</td>
+							<td>
+							 <p><Button color="success" onClick={ () => this.handleChangeRatePlan() }>Submit</Button></p>
+							</td>
+						</tr>
+					</table>
 					</div>
 					{/*
 					<form onSubmit={this.handleChangeRatePlan}>
