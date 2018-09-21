@@ -31,15 +31,14 @@ class Aside extends Component {
 				break;
 			}
 		}
-		alert("Plan selected : " + changePlanTo);
-
+		
 		var selectedSubscribers = this.props.selectedRows;
 		var selectedSuIds = [];
 		for (var index = 0; index < selectedSubscribers.length; index++) {
 			selectedSuIds.push(selectedSubscribers[index].id);
 		}
 		this.setState({subscriberIds: selectedSuIds});
-		alert("subs : "+ selectedSuIds);
+		alert("Plan selected : " + changePlanTo + "\nsubs : "+ selectedSuIds);
 
 		const data = {
 		    'subIds' : selectedSuIds,
