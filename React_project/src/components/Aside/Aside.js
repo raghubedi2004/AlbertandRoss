@@ -54,11 +54,14 @@ class Aside extends Component {
 			obj['ratePlan'] = changePlanTo;
 
 			axios.post(config.get('kafkaBaseUrl'), obj).then(response => {
-				console.log(response);
+				var data = response.data;
+				if (data != null && data != undefined && data.status != undefined && data.status === 'Message sent') {
+					console.log(data.status);
+					this.handleRefreshParent();
+				}
 			}).catch(error => {
-				console.log(error.response)
+				console.log(error.response);
 			});
-			this.handleRefreshParent();
 		}
 	}
 
