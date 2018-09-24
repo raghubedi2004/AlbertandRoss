@@ -5,6 +5,10 @@ var template = { __html: __html };
 
 class Test extends Component {
 
+  componentWillMount() {
+    document.body.classList.add('aside-menu-hidden');
+  }
+
     componentDidMount() {
       var ifrm = document.getElementById('buyIframe');
       ifrm = ifrm.contentWindow || ifrm.contentDocument.document || ifrm.contentDocument;
