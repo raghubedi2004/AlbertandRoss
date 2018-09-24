@@ -106,10 +106,12 @@ class DataTable extends Component {
 		this.handleRefreshDataTable = this.handleRefreshDataTable.bind(this);
 	}
 
-	asideToggle(e) {
-		//alert(this.state.selectedRows);
-		//e.preventDefault();
-		document.body.classList.toggle('aside-menu-hidden');
+  handleOpenAside(menuBarOpen) {
+		if (menuBarOpen) {
+      document.body.classList.remove('aside-menu-hidden');
+    } else {
+      document.body.classList.add('aside-menu-hidden');
+    }
 	}
 
 	handleChangeHeaders(e) {
@@ -181,7 +183,7 @@ class DataTable extends Component {
 			if (arrayLength === 0) {
 				// if user selects first row in the table
 				this.setState({actionPanelOpen: true});
-				this.asideToggle(false);
+				this.handleOpenAside(true);
 			}
 		} else {
 			for (var i = 0; i < arrayLength; i++) {
@@ -193,19 +195,11 @@ class DataTable extends Component {
 			var updatedRowLength = rows.length;
 			if (updatedRowLength === 0) {
 				this.setState({actionPanelOpen: false});
-				this.asideToggle();
+				this.handleOpenAside(false);
 			}
 		}
 
 		this.setState({selectedRows: rows});
-
-		//if (isSelect) {
-		//	this.state.selectedRows.push(row.subscriberName);
-		//	this.setState({abc: abc+","+row.subscriberName});
-		//} else {
-		//	this.state.selectedRows.pop(row.subscriberName);
-		//	this.setState({abc: "test"});
-		//}
 	}
 
 	handleRefreshDataTable(e) {
@@ -247,7 +241,7 @@ class DataTable extends Component {
 	          <span className="navbar-toggler-icon"></span>
 	        </NavbarToggler>
 					</div> */}
-					<BootstrapTable headerClasses="header-class" data={this.state.responseData} condensed version="4" striped hover pagination search selectRow={this.selectRow} options={this.options}>
+					<BootstrapTable headerClasses="header-class" data={this.state.responseData} cleanSelected condensed version="4" striped hover pagination search selectRow={this.selectRow} options={this.options}>
 						<TableHeaderColumn isKey dataField="id" hidden={true}>Id</TableHeaderColumn>
 	          <TableHeaderColumn id="subscriberName" dataField="subscriberName" hidden={this.state.hideSubscriberName} width="150px" dataSort>Subscriber Name</TableHeaderColumn>
 						<TableHeaderColumn dataField="phoneNumber" width="130px" hidden={this.state.hidePhoneNumber} dataSort>Phone Number</TableHeaderColumn>
