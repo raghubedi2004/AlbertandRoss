@@ -45,17 +45,21 @@ class Aside extends Component {
 			this.setState({subscriberIds: selectedSuIds});
 			console.log("Plan selected : " + changePlanTo + "\nsubs : "+ selectedSuIds);
 
-			const data = {
-			    'subIds' : selectedSuIds,
-			    'ratePlan': changePlanTo
-			};
-			const obj = {};
-			obj['subIds'] = selectedSuIds;
-			obj['ratePlan'] = changePlanTo;
+			const requestObj = {};
+			var subNodeList = [];
+			for (var index = 0; index < selectedSubscribers.length; index++) {
+				const subNode = {};
+				subNode['subscriberId'] = selectedSubscribers[index].subscriberId;
+				subNode['ban'] = selectedSubscribers[index].ban;
+				subNode['ratePlan'] = changePlanTo;
+				subNodeList.push(subNode);
+			}
+			requestObj['subscriberDetails'] = subNodeList;
 
-			axios.post(config.get('kafkaBaseUrl'), obj).then(response => {
+			axios.post(config.get('kafkaBaseUrl'), requestObj).then(response => {
 				var data = response.data;
-				if (data != null && data != undefined && data.status != undefined && data.status === 'Message sent') {
+				if (data != null && data != undefined && data.status != undefined &&
+					data.status === 'Message(s) sent to change rate plan...') {
 					console.log(data.status);
 					this.handleRefreshParent();
 				}
@@ -97,6 +101,7 @@ class Aside extends Component {
           <TabPane tabId="chooseActions">
 					<div className="callout m-0 py-2 text-muted text-center bg-light text-uppercase">
             <small><b>Actions</b></small>
+						<NavLink href="/#/telus/subscribers"><span className="window-close"></span></NavLink>
           </div>
 					{this.props.selectedRows.length ?
 					<div>
